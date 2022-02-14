@@ -1,0 +1,9 @@
+<mat-toolbar color="primary" class="app-header">
+  <div><a href="/" class="mmdb">MMDB</a></div>
+  <span class="nav-tool-items">
+    <a *ngIf="!isLoggedIn" mat-button routerLink="login" routerLinkActive="active">Log in</a>
+    <a *ngIf="!isLoggedIn" mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+    <a *ngIf="isLoggedIn" mat-button mat-raised-button (click)="logout()">Log out</a>
+  </span>
+</mat-toolbar>
+<router-outlet></router-outlet>

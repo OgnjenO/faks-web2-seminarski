@@ -1,0 +1,61 @@
+<table mat-table [dataSource]="movies" class="mat-elevation-z8">
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef> Year </th>
+    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+  </ng-container>
+  <ng-container matColumnDef="stars">
+    <th mat-header-cell *matHeaderCellDef> Stars </th>
+    <td mat-cell *matCellDef="let element"> {{element.stars}} </td>
+  </ng-container>
+  <ng-container matColumnDef="producent">
+    <th mat-header-cell *matHeaderCellDef> Producent </th>
+    <td mat-cell *matCellDef="let element"> {{element.producent}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell  *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element" >
+      <button mat-stroked-button class="btn-block" (click)="editMovie(element)">Edit</button>
+      <button mat-stroked-button class="btn-block" (click)="deleteMovie(element)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<hr>
+<button mat-stroked-button class="btn-block mat-stroked-button-primary" (click)="createMovie()">Create</button>
+<div *ngIf="isFormOpened">
+  <hr>
+  <div class="custom-move-to-right">
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" [(ngModel)]='title'>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Year</mat-label>
+        <input matInput name="year" [(ngModel)]='year' type="number">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Stars</mat-label>
+        <input matInput name="stars" [(ngModel)]='stars'>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Producent</mat-label>
+        <input matInput name="producent" [(ngModel)]='producent'>
+      </mat-form-field>
+    </p>
+    <button mat-stroked-button class="btn-block mat-stroked-button-primary" (click)="confirmAction()">{{currentAction}}</button>
+    <button mat-stroked-button class="btn-block mat-stroked-button-danger" (click)="cancelAction()">Cancel</button>
+  </div>
+</div>
